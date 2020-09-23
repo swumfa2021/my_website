@@ -1,4 +1,4 @@
 # my_website
 
-*italics*
+*italics*\
 **bold**
