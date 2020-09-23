@@ -1,6 +1,6 @@
 # my_website
 
 *italics*\
-**bold**
+**bold**\
 
 Hello world
