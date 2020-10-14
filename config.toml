@@ -91,13 +91,13 @@ disqusShortname = ""
       title = "Shawn"
       subtitle = "London Business School - MFA 2021"
       image = "shawn01.jpg"
-      url = "img/blogs/"
+      url = "blogs/blog1"
 
     [[params.tiles.showcase]]
       title = "Returns of Financial Stocks"
       subtitle = "The relationship between risk and return"
       image = "stocks01.jpg"
-      url = "img/blogs"
+      url = "projects/pj1"
 
     [[params.tiles.showcase]]
       title = "Magna"
