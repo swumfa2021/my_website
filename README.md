@@ -1,6 +1,3 @@
 # my_website
 
-*italics*\
-**bold**\
-
-Hello world
+Link to my portfolio website: https://shawnwu-portfolio.netlify.app/
