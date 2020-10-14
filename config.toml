@@ -44,16 +44,12 @@ disqusShortname = ""
     # logo = "logo.png"
 
     [[params.navigation.links]]
-      name = "Home"
-      url = "#"
-
-    [[params.navigation.links]]
       name = "Blogs"
       url = "blogs"
 
-    #[[params.navigation.links]]
-      #name = "Generic Blog"
-      #url = "blogs/ipsum"
+    [[params.navigation.links]]
+      name = "Projects"
+      url = "pojects"
 
     #[[params.navigation.links]]
      # name = "Elements"
@@ -68,8 +64,8 @@ disqusShortname = ""
 
     # Button Style 1
     [[params.navigation.button1]]
-      name = "Get Started"
-      url = "blogs"
+      name = "Home"
+      url = "#"
 
     # Button Style 2
     [[params.navigation.button2]]
@@ -95,14 +91,13 @@ disqusShortname = ""
       title = "Shawn"
       subtitle = "London Business School - MFA 2021"
       image = "shawn01.jpg"
-      url = "blogs/blog1"
-    #  url = "blogs/aliquam"
+      url = "img/blogs/"
 
     [[params.tiles.showcase]]
-      title = "Tempus"
-      subtitle = "Feugiat Amet Tempus"
-      image = "pic02.jpg"
-      url = "blogs/tempus"
+      title = "Returns of Financial Stocks"
+      subtitle = "The relationship between risk and return"
+      image = "stocks01.jpg"
+      url = "img/blogs"
 
     [[params.tiles.showcase]]
       title = "Magna"
@@ -220,4 +215,3 @@ disqusShortname = ""
       text = "Design: "
       url= "https://www.html5up.net"
       alt = "HTML5 UP"
-      
