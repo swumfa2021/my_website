@@ -78,7 +78,24 @@
                             
 <p>We will use the <code>tidyquant</code> package to download historical data of stock prices, calculate returns, and examine the distribution of returns. The file <code>nyse.csv</code> contains 508 stocks listed on the NYSE, their ticker <code>symbol</code>, <code>name</code>, the IPO  (Initial Public Offering) year, and the sector and industry the company is in.</p>     
 
-<p>Based on this dataset, we create a table and a bar plot that shows the number of companies per sector, in descending order</p>
+<p>Based on this dataset, we create a table and a bar plot that shows the number of companies per sector, in descending order.</p>
+
+<div id="beer-consumption" class="section level2">
+<h2>Beer Consumption</h2>
+<pre class="r"><code>nyse_sector - nyse %&gt;% 
+  group_by(sector) %&gt;%
+  summarise(num_companies=n()) %>%
+  arrange(desc(num_companies))
+
+nyse_sector %>% 
+  ggplot(aes(x=reorder(sector,-num_companies), 
+  y=num_companies, fill=sector)) +
+  geom_bar(stat = 'identity') +
+   ylab("Number of Companies") + labs(fill = "Sectors") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.key.size = unit(0.25, "cm"), 
+        axis.title.x = element_blank())</code></pre>
+<p><img src="/projects/pj1_files/figure_html/stock_plot_1.png" width = "648" style = "display: block; margin: auto;"/></p>
                          
                             
                             
