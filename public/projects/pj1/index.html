@@ -82,11 +82,11 @@
 
 <div id="beer-consumption" class="section level2">
 <h2>Beer Consumption</h2>
-<pre class="r"><code>nyse_sector - nyse %&gt;% 
-  group_by(sector) %&gt;%
+<pre class="r"><code>nyse_sector - nyse %>% 
+  group_by(sector) %>%
   summarise(num_companies=n()) %>%
   arrange(desc(num_companies))
-
+ 
 nyse_sector %>% 
   ggplot(aes(x=reorder(sector,-num_companies), 
   y=num_companies, fill=sector)) +
