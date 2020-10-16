@@ -90,12 +90,6 @@ approval_week %>%
 
 ```
 
-You can facet by year, and add an orange line at zero. Your plot should look like this:
-
-```{r trump_margins, echo=FALSE, out.width="100%"}
-knitr::include_graphics(here::here("images", "trump_approval_margin.png"), error = FALSE)
-```
-
 ## Compare Confidence Intervals
 
 Compare the confidence intervals for `week 15` (6-12 April 2020) and `week 34` (17-23 August 2020). Can you explain what's going on? One paragraph would be enough.

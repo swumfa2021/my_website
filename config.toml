@@ -100,7 +100,7 @@ disqusShortname = ""
       url = "projects/pj1"
 
     [[params.tiles.showcase]]
-      title = "Magna"
+      title = "Trump's Approval Margins"
       subtitle = "Lorem Etiam Nullam"
       image = "pic03.jpg"
       url = "projects/pj2"
