@@ -44,81 +44,61 @@ library(vroom)
 ```
 
 
+# Trump's Approval Margins
 
-# Climate change and temperature anomalies 
+As we saw in class, fivethirtyeight.com has detailed data on [all polls that track the president's approval ](https://projects.fivethirtyeight.com/trump-approval-ratings)
 
+```{r, cache=TRUE}
+# Import approval polls data
+approval_polllist <- read_csv(here::here('data', 'approval_polllist.csv'))
 
-If we wanted to study climate change, we can find data on the *Combined Land-Surface Air and Sea-Surface Water Temperature Anomalies* in the Northern Hemisphere at [NASA's Goddard Institute for Space Studies](https://data.giss.nasa.gov/gistemp). The [tabular data of temperature anomalies can be found here](https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.txt)
+# or directly off fivethirtyeight website
+# approval_polllist <- read_csv('https://projects.fivethirtyeight.com/trump-approval-data/approval_polllist.csv') 
 
-To define temperature anomalies you need to have a reference, or base, period which NASA clearly states that it is the period between 1951-1980.
+glimpse(approval_polllist)
 
-Run the code below to load the file:
+# Use `lubridate` to fix dates, as they are given as characters.
+```
 
-```{r weather_data, cache=TRUE}
+## Create a plot
 
-weather <- 
-  read_csv("https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.csv", 
-           skip = 1, 
-           na = "***")
+What I would like you to do is to calculate the average net approval rate (approve- disapprove) for each week since he got into office. I want you plot the net approval, along with its 95% confidence interval. There are various dates given for each poll, please use `enddate`, i.e., the date the poll ended.
+
+```{R}
+approval_week <- approval_polllist %>%
+  mutate(enddate = mdy(enddate),
+         week = week(enddate),
+         year = year(enddate), year = as.character(year),
+         net_approval = approve - disapprove) %>%
+  group_by(week, year) %>%
+  summarise(net_approval_mean = mean(net_approval), count = n(), standev = sd(net_approval)) %>%
+  mutate(confint_parameter = 1.96 * (standev)/sqrt(count)) %>%
+  mutate(lower_bound = net_approval_mean - confint_parameter)  %>%
+  mutate(upper_bound = net_approval_mean + confint_parameter) 
+
+approval_week %>%
+  ggplot(aes(x = week, y = net_approval_mean)) + 
+  geom_ribbon(aes(ymin = lower_bound , ymax = upper_bound, fill = year)) + scale_fill_manual(values = c("indianred1", "green3", "turquoise3", "orchid"))   +
+  geom_point(size=0.6) + 
+  geom_line() +
+  geom_hline(yintercept= 0, color = "orange") +
+  facet_wrap(~year) +
+  scale_y_continuous(breaks = seq(-20.0,7.5,2.5)) +
+  scale_x_continuous(breaks = seq(0,52,13)) +
+  labs(title = "Estimating Net Approval (approve - disapprove) for Donald Trump", subtitle = "Weekly average of all polls", x = "Week of the year", y="Average Net Approval (%)") + theme(axis.text.y = element_text(size = 5)) + theme(legend.position = "none") +
+  theme(plot.title = element_text(size = 7, face = "bold"), plot.subtitle = element_text(size = 6), axis.title.x = element_text(size = 6), axis.title.y = element_text(size = 6))
 
 ```
 
-Notice that, when using this function, we added two options: `skip` and `na`.
+You can facet by year, and add an orange line at zero. Your plot should look like this:
 
-1. The `skip=1` option is there as the real data table only starts in Row 2, so we need to skip one row. 
-1. `na = "***"` option informs R how missing observations in the spreadsheet are coded. When looking at the spreadsheet, you can see that missing data is coded as "***". It is best to specify this here, as otherwise some of the data is not recognized as numeric data.
-
-Once the data is loaded, notice that there is a object titled `weather` in the `Environment` panel. If you cannot see the panel (usually on the top-right), go to `Tools` > `Global Options` > `Pane Layout` and tick the checkbox next to `Environment`. Click on the `weather` object, and the dataframe will pop up on a seperate tab. Inspect the dataframe.
-
-For each month and year, the dataframe shows the deviation of temperature from the normal (expected). Further the dataframe is in wide format. 
-
-You have two objectives in this section:
-
-1. Select the year and the twelve month variables from the `weather` dataset. We do not need the others (J-D, D-N, DJF, etc.) for this assignment. Hint: use `select()` function.
-
-1. Convert the dataframe from wide to 'long' format. Hint: use `gather()` or `pivot_longer()` function. Name the new dataframe as `tidyweather`, name the variable containing the name of the month as `month`, and the temperature deviation values as `delta`.
-
-
-```{r tidyweather}
-
+```{r trump_margins, echo=FALSE, out.width="100%"}
+knitr::include_graphics(here::here("images", "trump_approval_margin.png"), error = FALSE)
 ```
 
-Inspect your dataframe. It should have three variables now, one each for 
+## Compare Confidence Intervals
 
-1. year, 
-1. month, and 
-1. delta, or temperature deviation.
+Compare the confidence intervals for `week 15` (6-12 April 2020) and `week 34` (17-23 August 2020). Can you explain what's going on? One paragraph would be enough.
 
-## Plotting Information
-
-Let us plot the data using a time-series scatter plot, and add a trendline. To do that, we first need to create a new variable called `date` in order to ensure that the `delta` values are plot chronologically. 
-
-
-> In the following chunk of code, I used the `eval=FALSE` argument, which does not run a chunk of code; I did so that you can knit the document before tidying the data and creating a new dataframe `tidyweather`. When you actually want to run this code and knit your document, you must delete `eval=FALSE`, **not just here but in all chunks were `eval=FALSE` appears.**
-
-
-```{r scatter_plot, eval=FALSE}
-
-tidyweather <- tidyweather %>%
-  mutate(date = ymd(paste(as.character(Year), Month, "1")),
-         month = month(date, label=TRUE),
-         year = year(date))
-
-ggplot(tidyweather, aes(x=date, y = delta))+
-  geom_point()+
-  geom_smooth(color="red") +
-  theme_bw() +
-  labs (
-    title = "Weather Anomalies"
-  )
-
-```
-
-Is the effect of increasing temperature more pronounced in some months? Use `facet_wrap()` to produce a seperate scatter plot for each month, again with a smoothing line. Your chart should human-readable labels; that is, each month should be labeled "Jan", "Feb", "Mar" (full or abbreviated month names are fine), not `1`, `2`, `3`. 
-
-```{r facet_wrap, echo=FALSE}
-
-#Your code goes here...
-
-```
+In week 15, the confidence bands are tighter than in week 34. This could be attributed to a higher degree of uncertainty in week 34, implying that voters have an increasingly polarising opinion of Donald Trump.
 
