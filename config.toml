@@ -100,7 +100,7 @@ disqusShortname = ""
       url = "projects/project1"
 
     [[params.tiles.showcase]]
-      title = "Thoughts on donald j trump?"
+      title = "Thoughts on Donald J Trump?"
       subtitle = "Trump's Approval Margins"
       image = "donald01.jpg"
       url = "projects/project2"
