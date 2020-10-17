@@ -1,7 +1,8 @@
 ---
-title: "Session 4: Homework 2"
+title: "Thoughts on Donald J Trump?"
 author: "Your name goes here"
 date: "2020-10-17"
+image: "donald01.jpeg"
 output:
   html_document:
     theme: flatly
@@ -16,7 +17,7 @@ output:
 
 <div id="trumps-approval-margins" class="section level1">
 <h1>Trump’s Approval Margins</h1>
-<p>As we saw in class, fivethirtyeight.com has detailed data on <a href="https://projects.fivethirtyeight.com/trump-approval-ratings">all polls that track the president’s approval</a></p>
+<p>fivethirtyeight.com has detailed data on <a href="https://projects.fivethirtyeight.com/trump-approval-ratings">all polls that track the president’s approval</a></p>
 <pre class="r"><code># Import approval polls data
 approval_polllist &lt;- read_csv(here::here(&#39;data&#39;, &#39;approval_polllist.csv&#39;))
 
@@ -51,7 +52,7 @@ glimpse(approval_polllist)</code></pre>
 <pre class="r"><code># Use `lubridate` to fix dates, as they are given as characters.</code></pre>
 <div id="create-a-plot" class="section level2">
 <h2>Create a plot</h2>
-<p>What I would like you to do is to calculate the average net approval rate (approve- disapprove) for each week since he got into office. I want you plot the net approval, along with its 95% confidence interval. There are various dates given for each poll, please use <code>enddate</code>, i.e., the date the poll ended.</p>
+<p>We then calculate the average net approval rate (approve- disapprove) for each week since he got into office,and plot the net approval, along with its 95% confidence interval.<code>enddate</code>, i.e., the date the poll ended.</p>
 <pre class="r"><code>approval_week &lt;- approval_polllist %&gt;%
   mutate(enddate = mdy(enddate),
          week = week(enddate),
@@ -78,7 +79,7 @@ approval_week %&gt;%
 </div>
 <div id="compare-confidence-intervals" class="section level2">
 <h2>Compare Confidence Intervals</h2>
-<p>Compare the confidence intervals for <code>week 15</code> (6-12 April 2020) and <code>week 34</code> (17-23 August 2020). Can you explain what’s going on? One paragraph would be enough.</p>
+<p>Finally, we compare the confidence intervals for <code>week 15</code> (6-12 April 2020) and <code>week 34</code> (17-23 August 2020).</p>
 <p>In week 15, the confidence bands are tighter than in week 34. This could be attributed to a higher degree of uncertainty in week 34, implying that voters have an increasingly polarising opinion of Donald Trump.</p>
 </div>
 </div>
