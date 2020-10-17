@@ -49,6 +49,7 @@ library(patchwork)
 library(tidytext)
 ```
 
+
 # Returns of financial stocks
 
 
