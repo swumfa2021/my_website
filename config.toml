@@ -97,7 +97,7 @@ disqusShortname = ""
       title = "Returns of Financial Stocks"
       subtitle = "The relationship between risk and return"
       image = "stocks01.jpg"
-      url = "projects/pj1"
+      url = "projects/project1"
 
     [[params.tiles.showcase]]
       title = "Thoughts on donald j trump?"
