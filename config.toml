@@ -121,16 +121,16 @@ disqusShortname = ""
     # To add more blogs just copy and paste the code.
 
   # Section Type Two
-  [params.two]
-    enable = true
-    title = "Massa libero"
-    subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
-    Mauris aliquet magna magna sed nunc rhoncus pharetra. 
-    Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
-    Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
-    Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
-    buttonText = "Get Started"
-    url = "blogs"
+  #[params.two]
+   # enable = true
+    #title = "Massa libero"
+    #subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
+    #Mauris aliquet magna magna sed nunc rhoncus pharetra. 
+    #Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
+    #Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
+    #Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
+    #buttonText = "Get Started"
+    #url = "blogs"
 
 
   # Contact section
@@ -150,7 +150,7 @@ disqusShortname = ""
     # - send a dummy email yourself to confirm your account
     # - click the confirm link in the email from www.formspree.io
     # - you're done. Happy mailing!
-    # formEmail = "example@domain.com"
+    formEmail = "swu.mfa2021@london.edu"
 
     # Contact Section
     # You can add multiple emails, phone numbers, or addresses
@@ -172,7 +172,7 @@ disqusShortname = ""
   # Footer section
   [params.footer]
     enable = true
-    copyright = "Company Name"
+    copyright = "Shawn"
 
     # Uses font awesome icons
     [[params.footer.social]]
