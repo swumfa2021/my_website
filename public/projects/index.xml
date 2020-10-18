@@ -6,11 +6,11 @@
     <description>Recent content in Projects on Portfolio website for Shawn Wu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Session 2: Homework 1</title>
+      <title>Returns of Financial Stocks</title>
       <link>/projects/project1/</link>
-      <pubDate>Sat, 17 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>/projects/project1/</guid>
       <description>Returns of financial stocksWe will use the tidyquant package to download historical data of stock prices, calculate returns, and examine the distribution of returns.
@@ -20,7 +20,7 @@ We must first identify which stocks we want to download data for, and for this w
     <item>
       <title>Thoughts on Donald J Trump?</title>
       <link>/projects/project2/</link>
-      <pubDate>Sat, 17 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>/projects/project2/</guid>
       <description>Trump’s Approval Marginsfivethirtyeight.com has detailed data on all polls that track the president’s approval
