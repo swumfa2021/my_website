@@ -99,7 +99,7 @@ country_list <- c("United States","India", "Germany")
 First, we will produce this plot.
 
 
-```{r gdp1, echo=FALSE, out.width="100%"}
+```{r}
 
 US_India_Germany_GDP <- clean_GDP_Data%>%
   group_by(year)%>%
@@ -130,7 +130,7 @@ GDP_Calculation <- GDP_Calculation %>%
   mutate(Percentage_Difference = (Calculated_GDP - GDP)/GDP)
 ```
 
-```{r gdp2, echo=FALSE, out.width="100%"}
+```{r}
 knitr::include_graphics(here::here("gdp2.png"), error = FALSE)
 ```
 
