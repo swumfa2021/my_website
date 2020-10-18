@@ -1,6 +1,7 @@
 ---
-title: "Session 2: Homework 1"
+title: "Returns of Financial Stocks"
 author: "Group 7: Sarah Jiang, Danqing Sun, Lasse Munk, Shawn Wu, Pieter Vercruysse, Christian Pizzuti"
+image: "stocks01.jpg"
 date: "2020-10-18"
 output:
   html_document:
@@ -14,12 +15,12 @@ output:
 
 
 
-<div id="returns-of-financial-stocks" class="section level1">
+<div id="The relationship between risk and return" class="section level1">
 <h1>Returns of financial stocks</h1>
 <p>We will use the <code>tidyquant</code> package to download historical data of stock prices, calculate returns, and examine the distribution of returns.</p>
 <p>We must first identify which stocks we want to download data for, and for this we must know their ticker symbol; Apple is known as AAPL, Microsoft as MSFT, McDonald’s as MCD, etc. The file <code>nyse.csv</code> contains 508 stocks listed on the NYSE, their ticker <code>symbol</code>, <code>name</code>, the IPO (Initial Public Offering) year, and the sector and industry the company is in.</p>
 <pre class="r"><code>nyse &lt;- read_csv(here::here(&quot;data&quot;,&quot;nyse.csv&quot;))</code></pre>
-<p>Based on this dataset, create a table and a bar plot that shows the number of companies per sector, in descending order</p>
+<p>Based on this dataset, we will create a table and a bar plot that shows the number of companies per sector, in descending order</p>
 <pre class="r"><code>nyse_sector &lt;- nyse %&gt;% 
   group_by(sector) %&gt;%
   summarise(num_companies=n()) %&gt;%
@@ -134,7 +135,7 @@ myStocks_returns_annual &lt;- myStocks %&gt;%
                type       = &quot;arithmetic&quot;,
                col_rename = &quot;yearly_returns&quot;,
                cols = c(nested.col))</code></pre>
-<p>Create a dataframe and assign it to a new object, where you summarise monthly returns since 2017-01-01 for each of the stocks and <code>SPY</code>; min, max, median, mean, SD.</p>
+<p>Next, we will create a dataframe and assign it to a new object, where you summarise monthly returns since 2017-01-01 for each of the stocks and <code>SPY</code>; min, max, median, mean, SD.</p>
 <pre class="r"><code>summary_monthly_returns &lt;- myStocks_returns_monthly %&gt;%
   filter(date&gt;=ymd(&#39;2017-01-01&#39;)) %&gt;%
   group_by(symbol) %&gt;%
@@ -156,19 +157,18 @@ summary_monthly_returns</code></pre>
 ##  9 DIS     -0.179  0.234  -0.00208  0.00967              0.0750
 ## 10 DOW     -0.276  0.255   0.0456   0.00898              0.128 
 ## # ... with 21 more rows</code></pre>
-<p>Plot a density plot, using <code>geom_density()</code>, for each of the stocks</p>
+<p>Next, we plot a density plot, using <code>geom_density()</code>, for each of the stocks</p>
 <pre class="r"><code>  myStocks_returns_monthly %&gt;%
   ggplot(aes(x=monthly_returns, color=symbol)) +
   geom_density() + 
   theme(legend.key.size = unit(0.25, &quot;cm&quot;)) +
   xlab(&quot;Monthly Returns (%)&quot;) + ylab(&quot;Density&quot;) +labs(color=&quot;Stocks&quot;)</code></pre>
 <p><img src="/projects/project1/index_files/figure-html/density_monthly_returns-1.png" width="648" style="display: block; margin: auto;" /></p>
-<p>What can you infer from this plot? Which stock is the riskiest? The least risky?</p>
+<p>What can we infer from this plot? Which stock is the riskiest? The least risky?</p>
 <blockquote>
-<p>TYPE YOUR ANSWER AFTER (AND OUTSIDE!) THIS BLOCKQUOTE.<br />
-Upon a visual inspection, it would appear that Dow Inc. (DOW) is the riskiest stock, due to its distribution being the most wide-spread. On the other hand, the S&amp;P 500 index (SPY) appears to be the least risky, as it has the greatest “peakedness”.</p>
+<p>Upon a visual inspection, it would appear that Dow Inc. (DOW) is the riskiest stock, due to its distribution being the most wide-spread. On the other hand, the S&amp;P 500 index (SPY) appears to be the least risky, as it has the greatest “peakedness”.</p>
 </blockquote>
-<p>Finally, produce a plot that shows the expected monthly return (mean) of a stock on the Y axis and the risk (standard deviation) in the X-axis. Please use <code>ggrepel::geom_text_repel()</code> to label each stock with its ticker symbol</p>
+<p>Finally, we produce a plot that shows the expected monthly return (mean) of a stock on the Y axis and the risk (standard deviation) in the X-axis. We will use <code>ggrepel::geom_text_repel()</code> to label each stock with its ticker symbol</p>
 <pre class="r"><code>summary_monthly_returns %&gt;% 
   ggplot(aes(x=standard_deviation, y=mean, color=symbol, label=symbol)) +
   geom_point() + 
@@ -177,9 +177,8 @@ Upon a visual inspection, it would appear that Dow Inc. (DOW) is the riskiest s
   xlab(&quot;Risk (Standard Deviation)&quot;) + 
   ylab(&quot;Expected Return&quot;)</code></pre>
 <p><img src="/projects/project1/index_files/figure-html/risk_return_plot-1.png" width="648" style="display: block; margin: auto;" /></p>
-<p>What can you infer from this plot? Are there any stocks which, while being riskier, do not have a higher expected return?</p>
+<p>What can we infer from this plot? Are there any stocks which, while being riskier, do not have a higher expected return?</p>
 <blockquote>
-<p>TYPE YOUR ANSWER AFTER (AND OUTSIDE!) THIS BLOCKQUOTE.<br />
-In general, stocks that are riskier also have higher expected returns (positive relationship between expected return and risk). The Boeing Company (BA) and Dow Inc. (DOW) stand out as two of the stocks with the highest measure of risk, while not having the commensurate level of expected return. In essence, there are a lot of other stocks that can generate the same or even higher levels of expected return, at a much lower level of risk than The Boeing Company (BA) and Dow Inc. (DOW).</p>
+<p>In general, stocks that are riskier also have higher expected returns (positive relationship between expected return and risk). The Boeing Company (BA) and Dow Inc. (DOW) stand out as two of the stocks with the highest measure of risk, while not having the commensurate level of expected return. In essence, there are a lot of other stocks that can generate the same or even higher levels of expected return, at a much lower level of risk than The Boeing Company (BA) and Dow Inc. (DOW).</p>
 </blockquote>
 </div>
