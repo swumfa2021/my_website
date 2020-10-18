@@ -106,7 +106,7 @@ disqusShortname = ""
       url = "projects/project2"
 
     [[params.tiles.showcase]]
-      title = "GDP"
+      title = "Gross Domestic Product"
       subtitle = "Changes in GDP Components"
       image = "gdp01.jpg"
       url = "projects/project3"
