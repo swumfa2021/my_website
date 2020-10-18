@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="MFA student">
+	<meta name="author" content="Shawn Lywei Wu">
+	<meta name="generator" content="Hugo 0.75.1" />
+	<title>Session 6: Homework 3 &middot; Portfolio website for Shawn Wu</title>
+	<!-- Stylesheets -->
+	
+	<link rel="stylesheet" href="/css/main.css"/>
+	
+	
+
+	
+
+	<!-- Custom Fonts -->
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/ie/html5shiv.js"></script>
+	<script src="js/ie/html5shiv.jsrespond.min.js"></script>
+	<![endif]-->
+</head>
+
+    <body>
+
+    <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+    <header id="header" class="alt">
+        <a href="/" class="logo"><strong>Shawn Wu</strong> <span>MFA student from Singapore</span></a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+<!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+            
+                <li><a href="/"></a></li>
+            
+                <li><a href="/projects">Projects</a></li>
+            
+
+        </ul>
+        <ul class="actions vertical">
+            
+                <li><a href="/" class="button special fit">Home</a></li>
+            
+            
+                <li><a href="/" class="button fit">Log In</a></li>
+            
+        </ul>
+    </nav>
+
+        <!-- Main -->
+            <div id="main" class="alt">
+
+                
+                    <section id="one">
+                        <div class="inner">
+                            <header class="major">
+                                <h1>Session 6: Homework 3</h1>
+                            </header>
+                            
+                            
+
+
+<div id="challenge-2gdp-components-over-time-and-among-countries" class="section level1">
+<h1>Challenge 2:GDP components over time and among countries</h1>
+<p>At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). You can read more about GDP and the different approaches in calculating at the <a href="https://en.wikipedia.org/wiki/Gross_domestic_product">Wikipedia GDP page</a>.</p>
+<p>The GDP data we will look at is from the <a href="https://unstats.un.org/unsd/snaama/Downloads">United Nations’ National Accounts Main Aggregates Database</a>, which contains estimates of total GDP and its components for all countries from 1970 to today. We will look at how GDP and its components have changed over time, and compare different countries and how much each component contributes to that country’s GDP. The file we will work with is <a href="http://unstats.un.org/unsd/amaapi/api/file/6">GDP and its breakdown at constant 2010 prices in US Dollars</a> and it has already been saved in the Data directory. Have a look at the Excel file to see how it is structured and organised</p>
+<pre class="r"><code>UN_GDP_data  &lt;-  read_excel(here::here(&quot;data&quot;, &quot;Download-GDPconstant-USD-countries.xls&quot;), # Excel filename
+                sheet=&quot;Download-GDPconstant-USD-countr&quot;, # Sheet name
+                skip=2) # Number of rows to skip</code></pre>
+<p>The first thing you need to do is to tidy the data, as it is in wide format and you must make it into long, tidy format. Please express all figures in billions (divide values by <code>1e9</code>, or <span class="math inline">\(10^9\)</span>), and you want to rename the indicators into something shorter.</p>
+<blockquote>
+<p>make sure you remove <code>eval=FALSE</code> from the next chunk of R code– I have it there so I could knit the document</p>
+</blockquote>
+<pre class="r"><code>tidy_GDP_data  &lt;- UN_GDP_data %&gt;%
+  pivot_longer(cols = 4:51, names_to = &quot;year&quot;, values_to = &quot;Expenditure&quot;) %&gt;%mutate(Expenditure = Expenditure/(10^9))
+  
+
+clean_GDP_Data &lt;- tidy_GDP_data%&gt;%
+  mutate(IndicatorName = case_when(
+      IndicatorName == &quot;Final consumption expenditure&quot; ~ &quot;Total Consumption&quot;, 
+      IndicatorName == &quot;Household consumption expenditure (including Non-profit institutions serving households)&quot; ~ &quot;Household Consumption&quot;, 
+      IndicatorName == &quot;General government final consumption expenditure&quot; ~ &quot;Gov Consumption&quot;, 
+      IndicatorName == &quot;Gross capital formation&quot; ~ &quot;Gross Capital Formation&quot;,   
+      IndicatorName == &quot;Gross fixed capital formation (including Acquisitions less disposals of valuables)&quot; ~ &quot;Gross Capital&quot;, 
+      IndicatorName == &quot;Exports of goods and services&quot; ~ &quot;Exports&quot;, 
+      IndicatorName == &quot;Imports of goods and services&quot; ~ &quot;Imports&quot;, 
+      IndicatorName == &quot;Gross Domestic Product (GDP)&quot; ~ &quot;GDP&quot;, 
+      IndicatorName == &quot;Agriculture, hunting, forestry, fishing (ISIC A-B)&quot; ~ &quot;Ag/Hunt/Forest/Fish&quot;, 
+      IndicatorName == &quot;Mining, Manufacturing, Utilities (ISIC C-E)&quot; ~ &quot;Min/Manu/Utility&quot;,
+      IndicatorName == &quot;Manufacturing (ISIC D)&quot; ~ &quot;Manufacturing&quot;,
+      IndicatorName == &quot;Construction (ISIC F)&quot; ~ &quot;Construction&quot;,
+      IndicatorName == &quot;Wholesale, retail trade, restaurants and hotels (ISIC G-H)&quot; ~ &quot;Wholesale/Retail/Hospitality&quot;,
+      IndicatorName == &quot;Transport, storage and communication (ISIC I)&quot; ~ &quot;Transport/Comm/Storage&quot;,
+      IndicatorName == &quot;Other Activities (ISIC J-P)&quot; ~ &quot;Other&quot;,
+      IndicatorName == &quot;Total Value Added&quot; ~ &quot;Total Value Added&quot;,
+      IndicatorName == &quot;Changes in inventories&quot; ~ &quot;Changes in inventories&quot;))
+
+clean_GDP_Data</code></pre>
+<pre><code>## # A tibble: 176,880 x 5
+##    CountryID Country     IndicatorName     year  Expenditure
+##        &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;chr&gt;       &lt;dbl&gt;
+##  1         4 Afghanistan Total Consumption 1970         5.56
+##  2         4 Afghanistan Total Consumption 1971         5.33
+##  3         4 Afghanistan Total Consumption 1972         5.20
+##  4         4 Afghanistan Total Consumption 1973         5.75
+##  5         4 Afghanistan Total Consumption 1974         6.15
+##  6         4 Afghanistan Total Consumption 1975         6.32
+##  7         4 Afghanistan Total Consumption 1976         6.37
+##  8         4 Afghanistan Total Consumption 1977         6.90
+##  9         4 Afghanistan Total Consumption 1978         7.09
+## 10         4 Afghanistan Total Consumption 1979         6.92
+## # ... with 176,870 more rows</code></pre>
+<pre class="r"><code># Let us compare GDP components for these 3 countries
+country_list &lt;- c(&quot;United States&quot;,&quot;India&quot;, &quot;Germany&quot;)</code></pre>
+<p>First, can you produce this plot?</p>
+<p><img src="index_files/figure-html/gdp1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Secondly, recall that GDP is the sum of Household Expenditure (Consumption <em>C</em>), Gross Capital Formation (business investment <em>I</em>), Government Expenditure (G) and Net Exports (exports - imports). Even though there is an indicator <code>Gross Domestic Product (GDP)</code> in your dataframe, I would like you to calculate it given its components discussed above.</p>
+<blockquote>
+<p>What is the % difference between what you calculated as GDP and the GDP figure included in the dataframe?</p>
+</blockquote>
+<pre class="r"><code>GDP_Calculation &lt;- clean_GDP_Data %&gt;%
+  filter(IndicatorName == &quot;Household Consumption&quot; | IndicatorName == &quot;Gross Capital Formation&quot; | IndicatorName == &quot;Gov Consumption&quot; | IndicatorName == &quot;Exports&quot; | IndicatorName == &quot;Imports&quot; | IndicatorName == &quot;GDP&quot;)
+
+GDP_Calculation &lt;-  spread(GDP_Calculation, IndicatorName, Expenditure)
+
+GDP_Calculation &lt;- GDP_Calculation %&gt;%
+  mutate(Calculated_GDP = `Household Consumption`+`Gross Capital Formation`+`Gov Consumption`+Exports-Imports)
+
+GDP_Calculation &lt;- GDP_Calculation %&gt;%
+  mutate(Percentage_Difference = (Calculated_GDP - GDP)/GDP)</code></pre>
+<p><img src="C:/Users/shawn/Documents/LBS/Autumn/Data%20Analytics%20for%20Finance/my_website/gdp2.png" width="100%" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>What is this last chart telling you? Can you explain in a couple of paragraphs the different dynamic among these three countries?</p>
+</blockquote>
+<p>#Answer:</p>
+<p>In terms of government expenditure, Germany and United States have been spending more than India, as a proportion of their respective GDPs. This could be attributed to Germany and United States being wealthier countries than India, with governments that have a deeper coffer as well as the ability to raise more debt.</p>
+<p>We can also see an increase in gross capital formation in India, in the years after 2000, while the same levels are observed for Germany and United States. This could be interpreted as India accelerating its growth, to catch up to the more developed countries like Germany and United States.</p>
+<p>The one factor that is consistent across all three countries is that household expenditure always comprises the biggest proportion of GDP, with consumers’ spending being a key driver of any economy.</p>
+</div>
+
+                        </div>
+                    </section>
+            <!-- Disqus Inject -->
+                
+            </div>
+            
+        <!-- Footer -->
+            
+                <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <ul class="icons">
+                
+                    <li><a href="https://twitter.com/dawnofanautumn" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+                
+                    <li><a href="https://www.facebook.com/chastehorse" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+                
+                    <li><a href="https://www.instagram.com/dawnofanautumn/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+                
+                    <li><a href="https://github.com/swumfa2021" class="icon alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                
+                    <li><a href="https://www.linkedin.com/in/shawn-wu-lywei/" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+                
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Shawn</li>
+                
+                <li>Design:  <a href="https://www.html5up.net">HTML5 UP</a></li>
+                
+            </ul>
+        </div>
+    </footer>
+
+            
+        </div>
+
+    <!-- Scripts -->
+        <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+
+    
+
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+
+    
+
+    
+
+    </body>
+</html>
