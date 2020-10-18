@@ -96,11 +96,10 @@ country_list <- c("United States","India", "Germany")
 
 ```
 
-First, can you produce this plot?
+First, we will produce this plot.
 
 
 ```{r gdp1, echo=FALSE, out.width="100%"}
-knitr::include_graphics(here::here("images", "gdp1.png"), error = FALSE)
 
 US_India_Germany_GDP <- clean_GDP_Data%>%
   group_by(year)%>%

@@ -64,8 +64,8 @@ clean_GDP_Data</code></pre>
 ## # ... with 176,870 more rows</code></pre>
 <pre class="r"><code># Let us compare GDP components for these 3 countries
 country_list &lt;- c(&quot;United States&quot;,&quot;India&quot;, &quot;Germany&quot;)</code></pre>
-<p>First, can you produce this plot?</p>
-<p><img src="C:/Users/shawn/Documents/LBS/Autumn/Data Analytics for Finance/my_website/images/gdp1.png" width="100%" style="display: block; margin: auto;" /><img src="/projects/project4/index_files/figure-html/gdp1-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>First, we will produce this plot.</p>
+<p><img src="/projects/project4/index_files/figure-html/gdp1-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Secondly, recall that GDP is the sum of Household Expenditure (Consumption <em>C</em>), Gross Capital Formation (business investment <em>I</em>), Government Expenditure (G) and Net Exports (exports - imports). Even though there is an indicator <code>Gross Domestic Product (GDP)</code> in your dataframe, I would like you to calculate it given its components discussed above.</p>
 <blockquote>
 <p>What is the % difference between what you calculated as GDP and the GDP figure included in the dataframe?</p>
@@ -80,7 +80,7 @@ GDP_Calculation &lt;- GDP_Calculation %&gt;%
 
 GDP_Calculation &lt;- GDP_Calculation %&gt;%
   mutate(Percentage_Difference = (Calculated_GDP - GDP)/GDP)</code></pre>
-<p><img src="C:/Users/shawn/Documents/LBS/Autumn/Data Analytics for Finance/my_website/images/gdp2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="C:/Users/shawn/Documents/LBS/Autumn/Data Analytics for Finance/my_website/gdp2.png" width="100%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>What is this last chart telling you? Can you explain in a couple of paragraphs the different dynamic among these three countries?</p>
 </blockquote>
@@ -88,10 +88,9 @@ GDP_Calculation &lt;- GDP_Calculation %&gt;%
 <p>In terms of government expenditure, Germany and United States have been spending more than India, as a proportion of their respective GDPs. This could be attributed to Germany and United States being wealthier countries than India, with governments that have a deeper coffer as well as the ability to raise more debt.</p>
 <p>We can also see an increase in gross capital formation in India, in the years after 2000, while the same levels are observed for Germany and United States. This could be interpreted as India accelerating its growth, to catch up to the more developed countries like Germany and United States.</p>
 <p>The one factor that is consistent across all three countries is that household expenditure always comprises the biggest proportion of GDP, with consumers’ spending being a key driver of any economy.</p>
-<blockquote>
-<p>If you want to, please change <code>country_list &lt;- c("United States","India", "Germany")</code> to include your own country and compare it with any two other countries you like</p>
+
+
 </blockquote>
 <div id="details" class="section level1">
 <h1>Details</h1>
-<p>Who did you collaborate with: Stream A-Group 7</p>
 </div>
