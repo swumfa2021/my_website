@@ -28,6 +28,16 @@ We must first identify which stocks we want to download data for, and for this w
     </item>
     
     <item>
+      <title>Session 6: Homework 3</title>
+      <link>/projects/project4/</link>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/project4/</guid>
+      <description>At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). You can read more about GDP and the different approaches in calculating at the Wikipedia GDP page.
+The GDP data we will look at is from the United Nations’ National Accounts Main Aggregates Database, which contains estimates of total GDP and its components for all countries from 1970 to today.</description>
+    </item>
+    
+    <item>
       <title>Thoughts on Donald J Trump?</title>
       <link>/projects/project2/</link>
       <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
