@@ -130,7 +130,7 @@ GDP_Calculation <- GDP_Calculation %>%
   mutate(Percentage_Difference = (Calculated_GDP - GDP)/GDP)
 ```
 
-```{r}
+```{r gdp2, echo=FALSE, out.width="100%"}
 knitr::include_graphics(here::here("gdp2.png"), error = FALSE)
 ```
 
