@@ -1,5 +1,5 @@
 ---
-title: "Session 6: Homework 3"
+title: "Gross Domestic Product"
 author: "MFA - Stream A - Group 7"
 date: "2020-10-18"
 output:
@@ -15,16 +15,13 @@ output:
 
 
 <div id="challenge-2gdp-components-over-time-and-among-countries" class="section level1">
-<h1>Challenge 2:GDP components over time and among countries</h1>
+<h1>Changes in GDP components</h1>
 <p>At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). You can read more about GDP and the different approaches in calculating at the <a href="https://en.wikipedia.org/wiki/Gross_domestic_product">Wikipedia GDP page</a>.</p>
-<p>The GDP data we will look at is from the <a href="https://unstats.un.org/unsd/snaama/Downloads">United Nations’ National Accounts Main Aggregates Database</a>, which contains estimates of total GDP and its components for all countries from 1970 to today. We will look at how GDP and its components have changed over time, and compare different countries and how much each component contributes to that country’s GDP. The file we will work with is <a href="http://unstats.un.org/unsd/amaapi/api/file/6">GDP and its breakdown at constant 2010 prices in US Dollars</a> and it has already been saved in the Data directory. Have a look at the Excel file to see how it is structured and organised</p>
+<p>The GDP data we will look at is from the <a href="https://unstats.un.org/unsd/snaama/Downloads">United Nations’ National Accounts Main Aggregates Database</a>, which contains estimates of total GDP and its components for all countries from 1970 to today. We will look at how GDP and its components have changed over time, and compare different countries and how much each component contributes to that country’s GDP. The file we will work with is <a href="http://unstats.un.org/unsd/amaapi/api/file/6">GDP and its breakdown at constant 2010 prices in US Dollars</a></p>
 <pre class="r"><code>UN_GDP_data  &lt;-  read_excel(here::here(&quot;data&quot;, &quot;Download-GDPconstant-USD-countries.xls&quot;), # Excel filename
                 sheet=&quot;Download-GDPconstant-USD-countr&quot;, # Sheet name
                 skip=2) # Number of rows to skip</code></pre>
-<p>The first thing you need to do is to tidy the data, as it is in wide format and you must make it into long, tidy format. Please express all figures in billions (divide values by <code>1e9</code>, or <span class="math inline">\(10^9\)</span>), and you want to rename the indicators into something shorter.</p>
-<blockquote>
-<p>make sure you remove <code>eval=FALSE</code> from the next chunk of R code– I have it there so I could knit the document</p>
-</blockquote>
+<p>The first thing we need to do is to tidy the data, as it is in wide format and we must make it into long, tidy format. We shall express all figures in billions (divide values by <code>1e9</code>, or <span class="math inline">\(10^9\)</span>), and rename the indicators into something shorter.</p>
 <pre class="r"><code>tidy_GDP_data  &lt;- UN_GDP_data %&gt;%
   pivot_longer(cols = 4:51, names_to = &quot;year&quot;, values_to = &quot;Expenditure&quot;) %&gt;%mutate(Expenditure = Expenditure/(10^9))
   
