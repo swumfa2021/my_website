@@ -131,7 +131,7 @@ GDP_Calculation <- GDP_Calculation %>%
 ```
 
 ```{r gdp2, echo=FALSE, out.width="100%"}
-knitr::include_graphics(here::here("gdp2.png"), error = FALSE)
+knitr::include_graphics(here::here("gdp02.jpg"), error = FALSE)
 ```
 
 
