@@ -20,7 +20,7 @@ disqusShortname = ""
 
   # Provide your metadata here.
   name = "Shawn Lywei Wu"
-  description = "MFA student"
+  description = "MFA2021"
 
   # Link custom assets relative to /static
   custom_css = []
@@ -38,7 +38,7 @@ disqusShortname = ""
   # Navigation Section
   [params.navigation]
     title = "Shawn Wu"
-    subtitle = "MFA student from Singapore"
+    subtitle = "MFA2021"
     menu = "Menu"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
@@ -78,7 +78,7 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Shawn"
-    subtitle = "This is my portfolio website."
+    subtitle = "Welcome to my portfolio website!"
     buttonText = "Get Started"
 
 
@@ -96,7 +96,7 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "Returns of Financial Stocks"
       subtitle = "The relationship between risk and return"
-      image = "stocks01.jpg"
+      image = "nyse01.jpg"
       url = "projects/project1"
 
     [[params.tiles.showcase]]
