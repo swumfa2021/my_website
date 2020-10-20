@@ -120,7 +120,7 @@ disqusShortname = ""
     # For more informtion take a look at the README.
     # To add more blogs just copy and paste the code.
 
-   Section Type Two
+   
   [params.two]
     enable = true
     title = "About Me"
