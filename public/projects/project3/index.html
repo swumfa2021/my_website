@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="MFA student">
+	<meta name="description" content="MFA2021">
 	<meta name="author" content="Shawn Lywei Wu">
 	<meta name="generator" content="Hugo 0.75.1" />
 	<title>Gross Domestic Product &middot; Portfolio website for Shawn Wu</title>
@@ -40,7 +40,7 @@
 
             <!-- Header -->
     <header id="header" class="alt">
-        <a href="/" class="logo"><strong>Shawn Wu</strong> <span>MFA student from Singapore</span></a>
+        <a href="/" class="logo"><strong>Shawn Wu</strong> <span>MFA2021</span></a>
         <nav>
             <a href="#menu">Menu</a>
         </nav>
@@ -81,6 +81,7 @@
                             
 
 <div id="Changes in GDP components" class="section level1">
+<h1>Changes in GDP components</h1>
 <p>At the risk of oversimplifying things, the main components of gross domestic product, GDP are personal consumption (C), business investment (I), government spending (G) and net exports (exports - imports). You can read more about GDP and the different approaches in calculating at the <a href="https://en.wikipedia.org/wiki/Gross_domestic_product">Wikipedia GDP page</a>.</p>
 <p>The GDP data we will look at is from the <a href="https://unstats.un.org/unsd/snaama/Downloads">United Nations’ National Accounts Main Aggregates Database</a>, which contains estimates of total GDP and its components for all countries from 1970 to today. We will look at how GDP and its components have changed over time, and compare different countries and how much each component contributes to that country’s GDP. The file we will work with is <a href="http://unstats.un.org/unsd/amaapi/api/file/6">GDP and its breakdown at constant 2010 prices in US Dollars</a>.</p>
 <pre class="r"><code>UN_GDP_data  &lt;-  read_excel(here::here(&quot;data&quot;, &quot;Download-GDPconstant-USD-countries.xls&quot;), # Excel filename
@@ -153,7 +154,7 @@ GDP_Calculation &lt;- GDP_Calculation %&gt;%
 
 GDP_Calculation &lt;- GDP_Calculation %&gt;%
   mutate(Percentage_Difference = (Calculated_GDP - GDP)/GDP)</code></pre>
-<p><img src="C:/Users/shawn/Documents/LBS/Autumn/Data%20Analytics%20for%20Finance/my_website/gross2.jpg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="/img/gdp02.jpg" width="100%" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>What is this last chart telling us? Can we explain in a couple of paragraphs the different dynamic among these three countries?</p>
 </blockquote>
