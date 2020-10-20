@@ -91,7 +91,7 @@ disqusShortname = ""
       title = "Check out my CV"
       subtitle = "My Experiences"
       image = "southkorea01.jpg"
-      url = "docs/blog1"
+      url = "docs/Shawn_CV.pdf"
 
     [[params.tiles.showcase]]
       title = "Returns of Financial Stocks"
