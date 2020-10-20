@@ -124,7 +124,7 @@ disqusShortname = ""
   [params.two]
     enable = true
     title = "About Me"
-    subtitle = """Hi there! My name is Shawn, and I am from Singapore. I graduated from the Singapore Institute of Management, and I am currently doing my Master's Degree in London. This is my portfolio website where you can find snippets of my work!""" 
+    subtitle = """Hi there! My name is Shawn, and I am from Singapore. I graduated from the Singapore Institute of Management, and I am currently doing my Master's Degree at London Business School. This is my portfolio website where you can find snippets of my work!""" 
     buttonText = "My Projects"
     url = "projects"
 
