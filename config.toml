@@ -88,10 +88,10 @@ disqusShortname = ""
     # Display your showcases here.
     
     [[params.tiles.showcase]]
-      title = "Shawn"
-      subtitle = "London Business School - MFA 2021"
-      image = "shawn02.jpg"
-      url = "blogs/blog1"
+      title = "Check out my CV"
+      subtitle = "My Experiences"
+      image = "southkorea01.jpg"
+      url = "docs/blog1"
 
     [[params.tiles.showcase]]
       title = "Returns of Financial Stocks"
@@ -120,17 +120,13 @@ disqusShortname = ""
     # For more informtion take a look at the README.
     # To add more blogs just copy and paste the code.
 
-  # Section Type Two
-  #[params.two]
-   # enable = true
-    #title = "Massa libero"
-    #subtitle = """Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. 
-    #Mauris aliquet magna magna sed nunc rhoncus pharetra. 
-    #Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. 
-    #Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero.
-    #Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus."""
-    #buttonText = "Get Started"
-    #url = "blogs"
+   Section Type Two
+  [params.two]
+    enable = true
+    title = "About Me"
+    subtitle = """Hi there! My name is Shawn, and I am from Singapore. I graduated from the Singapore Institute of Management, and I am currently doing my Master's Degree in London. This is my portfolio website where you can find snippets of my work!""" 
+    buttonText = "My Projects"
+    url = "projects"
 
 
   # Contact section
